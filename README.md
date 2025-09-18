@@ -2,8 +2,6 @@
 [![GitHub Release](https://img.shields.io/github/v/release/0chonko/phpunit-plugin)](https://github.com/0chonko/phpunit-plugin/releases)
 [![License](https://img.shields.io/github/license/0chonko/phpunit-plugin)](LICENSE)
 
-Here’s a clean `README.md` for your script so it’s understandable and easy to use in a Drone CI context:
-
 ---
 
 # PHPUnit Drone CI Plugin
