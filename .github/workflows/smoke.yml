@@ -1,0 +1,32 @@
+name: Container smoke test
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  phpunit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t phpunit-plugin:smoke .
+      - name: Verify PHPUnit exit codes
+        run: |
+          mkdir -p "$RUNNER_TEMP/phpunit-smoke"
+          cd "$RUNNER_TEMP/phpunit-smoke"
+          cat > ExampleTest.php <<'PHP'
+          <?php
+          final class ExampleTest extends \PHPUnit\Framework\TestCase
+          {
+              public function testExample(): void
+              {
+                  self::assertSame('pass', getenv('EXPECTED'));
+              }
+          }
+          PHP
+          run_plugin() {
+            docker run --rm -v "$PWD:/drone/src:ro" \
+              -e PLUGIN_FOLDERS=ExampleTest.php -e EXPECTED="$1" phpunit-plugin:smoke
+          }
+          run_plugin pass
+          code=0
+          run_plugin fail || code=$?
+          test "$code" -eq 1

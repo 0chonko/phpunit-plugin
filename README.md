@@ -1,12 +1,13 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/germanfak/phpunit-plugin)](https://hub.docker.com/r/germanfak/phpunit-plugin)
 [![GitHub Release](https://img.shields.io/github/v/release/0chonko/phpunit-plugin)](https://github.com/0chonko/phpunit-plugin/releases)
-[![License](https://img.shields.io/github/license/0chonko/phpunit-plugin)](LICENSE)
 
 ---
 
 # PHPUnit Drone CI Plugin
 
 This is a simple Drone CI plugin for running PHPUnit tests with a wide range of configuration options via environment variables. Naturally, the image can be used for other use cases also where plug-and-play PHPUnit come in handy.
+
+The source release is [1.0.0](https://github.com/0chonko/phpunit-plugin/releases/tag/1.0.0). The example pins the published Docker Hub image by digest.
 
 ## Usage
 
@@ -20,7 +21,7 @@ environment:
   XDEBUG_MODE: coverage
 steps:
   - name: phpunit
-    image: ghcr.io/0chonko/phpunit-plugin:latest
+    image: germanfak/phpunit-plugin@sha256:896703686ac67e7565509f6c4de21f92f97dab845506eca4bb3620bcf61b1c82
     settings:
       run_test: tests
       config: phpunit.xml
