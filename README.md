@@ -9,6 +9,10 @@ This is a simple Drone CI plugin for running PHPUnit tests with a wide range of 
 
 The source release is [1.0.0](https://github.com/0chonko/phpunit-plugin/releases/tag/1.0.0). The example pins the published Docker Hub image by digest.
 
+## Runtime versions
+
+The image bundles PHP 8.2 CLI, PHPUnit 11.5, and Xdebug. Use PHPUnit 11-compatible tests and configuration.
+
 ## Usage
 
 Add the step to your `.drone.yml` pipeline:
