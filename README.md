@@ -17,22 +17,16 @@ Add the step to your `.drone.yml` pipeline:
 kind: pipeline
 type: docker
 name: testing
-environment:
-  XDEBUG_MODE: coverage
 steps:
   - name: phpunit
     image: germanfak/phpunit-plugin@sha256:896703686ac67e7565509f6c4de21f92f97dab845506eca4bb3620bcf61b1c82
     settings:
-      run_test: tests
-      config: phpunit.xml
-      verbose: true
+      folders: /drone/src/tests
+      config: /drone/src/phpunit.xml
       stop_on_fail: true
-      coverage: true
-      coverage_format: clover
-      coverage_output: coverage.xml
 ```
 
-The plugin will change into the repository root (`/drone/src`) and execute `phpunit` with the given options.
+Drone mounts the checkout at `/drone/src`. Use absolute paths to the checkout with this image so PHPUnit can find the configuration and test files.
 
 ---
 
